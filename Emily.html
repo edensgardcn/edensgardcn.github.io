@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Puedo ser tu novio?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8d7da;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #dc3545;
+            font-size: 2em;
+            margin-bottom: 50px;
+            padding: 0 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            margin: 0 15px;
+        }
+
+        #btnSi {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #btnNo {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+        }
+
+        #respuesta {
+            margin-top: 40px;
+            font-size: 1.8em;
+            color: #dc3545;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mi amor... ¿Puedo ser tu novio?</h1>
+    <div>
+        <button id="btnSi">Sí</button>
+        <button id="btnNo">No</button>
+    </div>
+    <div id="respuesta">¡Te amo mucho mi Emily! Serás la novia más feliz del mundo, lo prometo </div>
+
+    <!-- Melodía linda y funcional -->
+    <audio id="cancion" loop>
+        <source src="Buscarte-Lejos.mp3" type="audio/mpeg">
+    
+
+    <script>
+        const btnSi = document.getElementById('btnSi');
+        const btnNo = document.getElementById('btnNo');
+        const respuesta = document.getElementById('respuesta');
+        const cancion = document.getElementById('cancion');
+
+        // Activar música al tocar CUALQUIER parte de la pantalla
+        document.body.addEventListener('click', function() {
+            cancion.volume = 0.3;
+            cancion.play();
+        }, { once: true });
+
+        // Mover botón No
+        function moverNo() {
+            const ancho = window.innerWidth - btnNo.offsetWidth;
+            const alto = window.innerHeight - btnNo.offsetHeight;
+            btnNo.style.left = Math.random() * ancho + 'px';
+            btnNo.style.top = Math.random() * alto + 'px';
+        }
+
+        btnNo.addEventListener('mouseover', moverNo);
+        btnNo.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            moverNo();
+        });
+
+        // Acción del botón Sí
+        btnSi.addEventListener('click', function() {
+            respuesta.style.display = 'block';
+            btnNo.style.display = 'none';
+            cancion.volume = 0.7;
+        });
+    </script>
+</body>
+</html>
